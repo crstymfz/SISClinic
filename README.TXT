@@ -82,10 +82,6 @@ INSTALACIÓN PASO A PASO
 CREDENCIALES DE PRUEBA
 --------------------------------------------------------------------------------
 
-  Administrador:
-    Usuario:    admin
-    Contraseña: Admin123
-
   Fisioterapeuta:
     Usuario:    fisio1
     Contraseña: Nuevo123
