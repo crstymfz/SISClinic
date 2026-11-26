@@ -1,0 +1,1450 @@
+/* =====================================================
+   Sistema interno de gestión fisioterapéutica
+
+   ===================================================== */
+
+/* Tipografía: Inter (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* =====================================================
+   1. VARIABLES
+   ===================================================== */
+
+:root {
+    /* Paleta base */
+    --baltic-blue:   #22577a;
+    --tropical-teal: #38a3a5;
+    --emerald:       #57cc99;
+    --light-green:   #80ed99;
+    --tea-green:     #c7f9cc;
+
+    /* Variables de sistema (mapeadas) */
+    --color-primary:    var(--tropical-teal);
+    --color-soft:       var(--emerald);
+    --color-dark:       var(--baltic-blue);
+    --color-success:    var(--emerald);
+    --color-accent:     var(--light-green);
+
+    /* Fondos y textos */
+    --color-white:      #ffffff;
+    --color-light:      var(--tea-green);
+    --color-background: #f3fbf4;
+    --color-text:       #1a4459;
+    --color-muted:      #5f8093;
+    --color-border:     #d9e9dd;
+
+    /* Layout */
+    --sidebar-width: 250px;
+
+    /* Gradiente del sidebar */
+    --sidebar-gradient: linear-gradient(180deg, #22577a 0%, #38a3a5 100%);
+
+    /* Sombras */
+    --shadow-sm: 0 2px 8px rgba(34, 87, 122, 0.06);
+    --shadow-md: 0 6px 20px rgba(34, 87, 122, 0.10);
+    --shadow-lg: 0 10px 35px rgba(34, 87, 122, 0.14);
+
+    /* Radios */
+    --radius-sm: 8px;
+    --radius:    12px;
+    --radius-lg: 16px;
+}
+
+
+/* =====================================================
+   2. CONFIGURACIÓN GENERAL
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-dark);
+}
+
+
+/* =====================================================
+   3. ESTRUCTURA PRINCIPAL
+   ===================================================== */
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* =====================================================
+   4. BARRA LATERAL
+   ===================================================== */
+
+.sidebar {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+
+    background: var(--sidebar-gradient);
+    color: var(--color-white);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+
+    box-shadow: 4px 0 20px rgba(34, 87, 122, 0.10);
+}
+
+
+/* Encabezado del sidebar */
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 24px 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.sidebar-header h5 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.sidebar-header small {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 11px;
+}
+
+
+/* Icono del logo */
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 10px;
+
+    background-color: rgba(255, 255, 255, 0.18);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   5. MENÚ
+   ===================================================== */
+
+.sidebar-menu {
+    flex: 1;
+    padding: 22px 14px;
+    overflow-y: auto;
+}
+
+.menu-title {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    margin: 0 10px 10px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    padding: 11px 13px;
+    margin-bottom: 4px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+}
+
+.menu-link i {
+    font-size: 17px;
+    width: 20px;
+}
+
+.menu-link:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.menu-link.active {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    box-shadow: inset 3px 0 0 var(--light-green);
+}
+
+
+/* =====================================================
+   6. PIE DEL SIDEBAR
+   ===================================================== */
+
+.sidebar-footer {
+    padding: 16px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.logout-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    padding: 11px 13px;
+
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+}
+
+.logout-link:hover {
+    background-color: rgba(255, 80, 80, 0.18);
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   7. ÁREA PRINCIPAL
+   ===================================================== */
+
+.main-area {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =====================================================
+   8. BARRA SUPERIOR
+   ===================================================== */
+
+.topbar {
+    height: 70px;
+
+    background-color: var(--color-white);
+
+    border-bottom: 1px solid var(--color-border);
+
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 900;
+
+    box-shadow: 0 1px 3px rgba(34, 87, 122, 0.03);
+}
+
+
+/* Usuario */
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: var(--sidebar-gradient);
+    color: var(--color-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+.user-info small {
+    font-size: 11px;
+    color: var(--color-muted);
+}
+
+
+/* =====================================================
+   9. CONTENIDO
+   ===================================================== */
+
+.content-area {
+    flex: 1;
+    padding: 30px;
+}
+
+
+/* Títulos */
+
+.page-title {
+    color: var(--color-dark);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    color: var(--color-muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   10. TARJETAS
+   ===================================================== */
+
+.card {
+    border: none;
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow-sm);
+
+    background-color: var(--color-white);
+
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color-border);
+
+    padding: 18px 20px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+
+/* =====================================================
+   11. TARJETAS DE ESTADÍSTICAS
+   ===================================================== */
+
+/* =====================================================
+   11. TARJETAS DE ESTADÍSTICAS
+   ===================================================== */
+
+.stat-card {
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    height: 100%;
+
+    position: relative;
+    overflow: hidden;
+
+    border-left: 4px solid var(--color-primary);
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.3s ease,
+                border-color 0.3s ease;
+}
+
+/* Variantes de color */
+.stat-card--teal    { border-left-color: #38a3a5; }
+.stat-card--blue    { border-left-color: #22577a; }
+.stat-card--emerald { border-left-color: #57cc99; }
+.stat-card--violet  { border-left-color: #7c6fbc; }
+
+/* Icono teñido según la variante */
+.stat-card--teal    .stat-icon { background: #dcf0f0; color: #2b7d7e; }
+.stat-card--blue    .stat-icon { background: #d5e0e8; color: #22577a; }
+.stat-card--emerald .stat-icon { background: #dcf5e8; color: #3a9a70; }
+.stat-card--violet  .stat-icon { background: #e8e5f3; color: #5a4f8f; }
+
+/* Hover: se llena con gradiente del color de la variante */
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(2, 62, 138, 0.18);
+}
+
+.stat-card--teal:hover {
+    background: linear-gradient(135deg, #38a3a5 0%, #22577a 100%);
+    border-left-color: #1a4a5a;
+}
+.stat-card--blue:hover {
+    background: linear-gradient(135deg, #22577a 0%, #143b52 100%);
+    border-left-color: #0b2434;
+}
+.stat-card--emerald:hover {
+    background: linear-gradient(135deg, #57cc99 0%, #3a9a70 100%);
+    border-left-color: #2a7550;
+}
+.stat-card--violet:hover {
+    background: linear-gradient(135deg, #7c6fbc 0%, #5a4f8f 100%);
+    border-left-color: #403867;
+}
+
+/* En hover, textos e icono van en blanco */
+.stat-card:hover .stat-icon {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
+.stat-card:hover .stat-info small,
+.stat-card:hover .stat-info strong {
+    color: #ffffff;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 10px;
+
+    background-color: var(--color-light);
+    color: var(--color-primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    flex-shrink: 0;
+}
+
+.stat-info small {
+    display: block;
+
+    color: var(--color-muted);
+
+    font-size: 12px;
+
+    margin-bottom: 3px;
+}
+
+
+
+
+/* =====================================================
+   12. BOTONES
+   ===================================================== */
+
+.btn {
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 14px;
+    transition: all 0.15s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-dark);
+    border-color: var(--color-dark);
+    box-shadow: 0 4px 12px rgba(34, 87, 122, 0.25);
+}
+
+.btn-outline-primary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-light {
+    background-color: var(--color-background);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+.btn-light:hover {
+    background-color: var(--color-light);
+    border-color: var(--color-soft);
+    color: var(--color-dark);
+}
+
+
+/* =====================================================
+   13. FORMULARIOS
+   ===================================================== */
+
+.form-label {
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--color-dark);
+
+    margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+
+    padding: 10px 12px;
+
+    font-size: 14px;
+    color: var(--color-text);
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control::placeholder {
+    color: var(--color-muted);
+    opacity: 0.7;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-soft);
+
+    box-shadow: 0 0 0 0.2rem rgba(87, 204, 153, 0.18);
+
+    outline: none;
+}
+
+.input-group-text {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+}
+
+
+/* =====================================================
+   14. TABLAS
+   ===================================================== */
+
+.table {
+    margin-bottom: 0;
+    color: var(--color-text);
+}
+
+.table thead th {
+    background-color: var(--color-light);
+
+    color: var(--color-dark);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+
+    border-bottom: none;
+
+    padding: 12px 14px;
+}
+
+.table tbody td {
+    font-size: 13.5px;
+
+    vertical-align: middle;
+
+    color: var(--color-text);
+
+    padding: 12px 14px;
+
+    border-color: var(--color-border);
+}
+
+.table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.table tbody tr:hover {
+    background-color: var(--color-background);
+}
+
+
+/* =====================================================
+   15. ALERTAS
+   ===================================================== */
+
+.alert {
+    border-radius: var(--radius-sm);
+    border: none;
+    font-size: 13.5px;
+    padding: 12px 16px;
+}
+
+.alert-success {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border-left: 4px solid var(--color-success);
+}
+
+.alert-danger {
+    background-color: #fdecec;
+    color: #7a1f1f;
+    border-left: 4px solid #e63946;
+}
+
+.alert-warning {
+    background-color: #fff4e0;
+    color: #7a4a12;
+    border-left: 4px solid #f4a261;
+}
+
+.alert-info {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border-left: 4px solid var(--color-primary);
+}
+
+
+/* =====================================================
+   16. FOOTER
+   ===================================================== */
+
+.footer {
+    padding: 18px 30px;
+
+    background-color: var(--color-white);
+
+    border-top: 1px solid var(--color-border);
+
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+
+    color: var(--color-muted);
+
+    font-size: 11.5px;
+}
+
+
+/* =====================================================
+   17. BOTÓN MENÚ MÓVIL
+   ===================================================== */
+
+.sidebar-toggle {
+    color: var(--color-dark);
+    font-size: 22px;
+
+    border: none;
+    background: transparent;
+}
+
+.sidebar-toggle:hover {
+    color: var(--color-primary);
+}
+
+
+/* =====================================================
+   18. PÁGINA DE LOGIN
+   ===================================================== */
+
+.login-page {
+    min-height: 100vh;
+
+    background: linear-gradient(135deg, #f3fbf4 0%, #c7f9cc 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 430px;
+}
+
+.login-card {
+    background-color: var(--color-white);
+
+    border-radius: var(--radius-lg);
+
+    padding: 40px;
+
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* Logo */
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 15px;
+
+    background: var(--sidebar-gradient);
+
+    color: var(--color-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    box-shadow: 0 8px 20px rgba(34, 87, 122, 0.25);
+}
+
+.login-logo h1 {
+    color: var(--color-dark);
+
+    font-size: 26px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.login-logo p {
+    color: var(--color-muted);
+    font-size: 13px;
+    margin: 0;
+}
+
+
+/* Título */
+
+.login-title {
+    margin-bottom: 25px;
+}
+
+.login-title h2 {
+    color: var(--color-dark);
+
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.login-title p {
+    color: var(--color-muted);
+    font-size: 13px;
+    margin: 0;
+}
+
+
+/* Campos */
+
+.login-card .input-group-text {
+    background-color: var(--color-background);
+    border-color: var(--color-border);
+    color: var(--color-primary);
+}
+
+.login-card .form-control {
+    height: 44px;
+}
+
+.login-card .form-control:focus {
+    border-color: var(--color-soft);
+    box-shadow: none;
+}
+
+.login-card .input-group:focus-within .input-group-text {
+    border-color: var(--color-soft);
+    color: var(--color-dark);
+}
+
+
+/* Botón */
+
+.login-button {
+    height: 46px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: var(--radius-sm);
+}
+
+
+/* Alert */
+
+.login-alert {
+    font-size: 13px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+}
+
+
+/* Footer */
+
+.login-footer {
+    text-align: center;
+
+    margin-top: 30px;
+    padding-top: 20px;
+
+    border-top: 1px solid var(--color-border);
+}
+
+.login-footer p {
+    color: var(--color-dark);
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.login-footer small {
+    color: var(--color-muted);
+    font-size: 10.5px;
+}
+
+
+/* =====================================================
+   19. RESPONSIVE
+   ===================================================== */
+
+/* Tablet / móvil grande */
+@media (max-width: 991.98px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-area {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .content-area {
+        padding: 20px;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+}
+
+
+/* Móvil pequeño */
+@media (max-width: 576px) {
+
+    .content-area {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 21px;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+    }
+
+    .login-logo h1 {
+        font-size: 23px;
+    }
+}
+/* =====================================================
+   20. CARDS DE SECCIÓN (con color de identidad)
+   ===================================================== */
+
+.card-section .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 20px;
+
+    border-bottom: 2px solid var(--color-border);
+}
+
+.card-section .card-header strong {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+/* Icono dentro del header */
+.card-section .card-header .section-icon {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    color: #ffffff;
+
+    flex-shrink: 0;
+
+    transition: transform 0.2s ease;
+}
+
+.card-section:hover .card-header .section-icon {
+    transform: scale(1.08);
+}
+
+
+/* --- Variantes de color (especificidad reforzada) --- */
+
+/* Teal */
+.card-section.card-section--teal .card-header {
+    background: linear-gradient(90deg, rgba(56, 163, 165, 0.12) 0%, transparent 70%);
+    border-bottom-color: #38a3a5;
+}
+.card-section.card-section--teal .section-icon {
+    background: #38a3a5;
+}
+
+/* Coral */
+.card-section.card-section--coral .card-header {
+    background: linear-gradient(90deg, rgba(231, 111, 81, 0.12) 0%, transparent 70%);
+    border-bottom-color: #e76f51;
+}
+.card-section.card-section--coral .section-icon {
+    background: #e76f51;
+}
+
+/* Esmeralda */
+.card-section.card-section--emerald .card-header {
+    background: linear-gradient(90deg, rgba(87, 204, 153, 0.14) 0%, transparent 70%);
+    border-bottom-color: #57cc99;
+}
+.card-section.card-section--emerald .section-icon {
+    background: #57cc99;
+}
+
+/* Violeta */
+.card-section.card-section--violet .card-header {
+    background: linear-gradient(90deg, rgba(124, 111, 188, 0.14) 0%, transparent 70%);
+    border-bottom-color: #7c6fbc;
+}
+.card-section.card-section--violet .section-icon {
+    background: #7c6fbc;
+}
+
+/* Azul (baltic-blue) */
+.card-section.card-section--blue .card-header {
+    background: linear-gradient(90deg, rgba(34, 87, 122, 0.12) 0%, transparent 70%);
+    border-bottom-color: #22577a;
+}
+.card-section.card-section--blue .section-icon {
+    background: #22577a;
+}
+
+
+/* Placeholder (estado vacío de Evaluaciones/Sesiones) */
+.empty-state {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 14px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    background: var(--color-light);
+    color: var(--color-primary);
+}
+
+.empty-state p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.empty-state small {
+    color: var(--color-muted);
+    font-size: 12px;
+    opacity: 0.75;
+}
+/* =====================================================
+   21. CAMPOS DE INFORMACIÓN (dentro de card-section)
+   ===================================================== */
+
+.info-block-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--color-border);
+}
+
+.info-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.info-field-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background-color: var(--color-light);
+    color: var(--color-primary);
+    font-size: 16px;
+}
+
+.info-field-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.info-field-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 2px;
+}
+
+.info-field-value {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--color-dark);
+    word-break: break-word;
+}
+
+/* Variantes de color del ícono */
+.info-field--teal    .info-field-icon { background: rgba(56, 163, 165, 0.14); color: #2b7d7e; }
+.info-field--coral   .info-field-icon { background: rgba(231, 111, 81, 0.14); color: #c14f34; }
+.info-field--emerald .info-field-icon { background: rgba(87, 204, 153, 0.18); color: #3a9a70; }
+.info-field--violet  .info-field-icon { background: rgba(124, 111, 188, 0.14); color: #5a4f8f; }
+.info-field--blue    .info-field-icon { background: rgba(34, 87, 122, 0.14); color: #22577a; }
+
+/* =====================================================
+   22. NOTAS CLÍNICAS (dentro de card-section)
+   ===================================================== */
+
+.clinical-note {
+    position: relative;
+
+    padding: 14px 18px;
+
+    background: #f4f8fb;
+
+    border-left: 4px solid #22577a;
+    border-radius: 8px;
+
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.clinical-note:hover {
+    background: #e8eff5;
+    transform: translateX(2px);
+}
+
+.clinical-note-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #22577a;
+
+    margin-bottom: 6px;
+}
+
+.clinical-note-value {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.clinical-note-value.is-empty {
+    color: var(--color-muted);
+    font-style: italic;
+}
+
+/* =====================================================
+   23. DASHBOARD - Detalles
+   ===================================================== */
+
+/* Avatar pequeño en listas */
+.mini-avatar {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--color-light);
+    color: var(--color-primary);
+
+    font-size: 15px;
+}
+
+/* Botones de acceso rápido */
+.quick-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 20px 12px;
+
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+
+    color: var(--color-dark);
+    font-weight: 600;
+    font-size: 13.5px;
+
+    text-align: center;
+
+    transition: all 0.2s ease;
+}
+
+.quick-action i {
+    font-size: 22px;
+    color: var(--color-primary);
+    transition: transform 0.2s ease;
+}
+
+.quick-action:hover {
+    background: var(--color-light);
+    border-color: var(--color-primary);
+    color: var(--color-dark);
+    transform: translateY(-3px);
+}
+
+.quick-action:hover i {
+    transform: scale(1.15);
+}
+
+/* =====================================================
+   24. GRÁFICOS
+   ===================================================== */
+
+.chart-container {
+    position: relative;
+    height: 260px;
+    width: 100%;
+}
+
+/* =====================================================
+   25. TABS DEL EXPEDIENTE
+   ===================================================== */
+
+.tabs-expediente {
+    border-bottom: none;
+    padding: 0 12px;
+    flex-wrap: wrap;
+}
+
+.tabs-expediente .nav-item {
+    margin-bottom: -2px;
+}
+
+.tabs-expediente .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+
+    color: var(--color-muted);
+    font-weight: 500;
+    font-size: 13.5px;
+
+    padding: 14px 18px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    transition: all 0.2s ease;
+}
+
+.tabs-expediente .nav-link:hover {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-light);
+}
+
+.tabs-expediente .nav-link.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    background: transparent;
+    font-weight: 600;
+}
+
+.tabs-expediente .nav-link .badge {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* Responsive: en móvil se ven más compactos */
+@media (max-width: 576px) {
+    .tabs-expediente .nav-link {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+}
+
+/* =====================================================
+   26. MODAL DE CONFIRMACIÓN
+   ===================================================== */
+
+.modal-content {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--color-border);
+    padding: 18px 22px;
+}
+
+.modal-header .modal-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-body {
+    padding: 22px;
+    font-size: 14.5px;
+    color: var(--color-text);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 14px 22px;
+    gap: 8px;
+}
+
+.modal-icon-warning {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(244, 162, 97, 0.15);
+    color: #c67c3e;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+/* =====================================================
+   27. ALERTAS CLÍNICAS DEL DASHBOARD
+   ===================================================== */
+
+.alert-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.alert-list li {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.alert-list li:last-child {
+    border-bottom: none;
+}
+
+.alert-list-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 18px;
+
+    color: var(--color-text);
+    text-decoration: none;
+
+    transition: background-color 0.15s ease;
+}
+
+.alert-list-link:hover {
+    background-color: var(--color-background);
+    color: var(--color-dark);
+}
+
+.alert-list-link > i {
+    font-size: 22px;
+    color: var(--color-muted);
+    flex-shrink: 0;
+}
+
+.alert-list-link strong {
+    display: block;
+    font-size: 13.5px;
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+.alert-list-link small {
+    display: block;
+    font-size: 11.5px;
+    color: var(--color-muted);
+    margin-top: 2px;
+}
+
+/* =====================================================
+   28. VARIANTE ÁMBAR PARA ALERTAS CLÍNICAS
+   ===================================================== */
+
+.card-section.card-section--amber .card-header {
+    background: linear-gradient(90deg, rgba(198, 124, 62, 0.12) 0%, transparent 70%);
+    border-bottom-color: #c67c3e;
+}
+.card-section.card-section--amber .section-icon {
+    background: #c67c3e;
+}
+
+/* =====================================================
+   29. INFO-FIELD ÁMBAR
+   ===================================================== */
+
+.info-field--amber .info-field-icon {
+    background: rgba(198, 124, 62, 0.14);
+    color: #c67c3e;
+}
+
+/* =====================================================
+   30. VARIANTE CORAL PARA STAT-CARDS
+   ===================================================== */
+
+.stat-card--coral {
+    border-left-color: #e76f51;
+}
+
+.stat-card--coral .stat-icon {
+    background: rgba(231, 111, 81, 0.14);
+    color: #c14f34;
+}
+
+.stat-card--coral:hover {
+    background: linear-gradient(135deg, #e76f51 0%, #c14f34 100%);
+    border-left-color: #a03e26;
+}
+
+.stat-card--coral:hover .stat-icon {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
