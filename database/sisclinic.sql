@@ -90,8 +90,7 @@ CREATE TABLE sesiones (
 
 -- Datos de prueba
 -- Contraseñas (ya hasheadas con password_hash de PHP):
---   admin   -> Admin123
---   fisio1  -> Fisio123
+
 
 INSERT INTO usuarios (nombre_completo, usuario, contrasena, rol, estado) VALUES
 ('Administrador del Sistema', 'admin',  '$2y$10$nJZ2mCRr/Lx0Qo7GqUMZhOixrAUjYmApU8PBs0QacY3tMEOpj8nZG', 'Administrador', 1),
